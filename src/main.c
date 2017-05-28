@@ -58,11 +58,18 @@ int main() {
                 printf("Value: %d\n", e.value);
             }
         }
+        if(e.type == JS_EVENT_BUTTON) {
+            // Move cursor to position and blank line
+            printf("%c[%d;%dH",0x1B,e.number+2+9,1);
+            printf("%c[%dK",0x1B,0);
+            printf("%c[%d;%dH",0x1B,e.number+2+9,1);
+
+            printf("Button: %d\t", e.number);
+            printf("Value: %d\n", e.value);
+        }
     }
 
-
-// Clean up    
-
+    // Clean up    
     close(fd);
     
     return 0;
